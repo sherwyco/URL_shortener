@@ -1,2 +1,2 @@
 # URL_shortener
-URL Shortener written in React, Python, Django, REST
+URL Shortener written in React, Python, Django, REST, PostgreSQL
