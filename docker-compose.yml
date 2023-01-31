@@ -1,8 +1,15 @@
 version: "3.8"
 
 services:
-  app:
+  frontend:
     container_name: frontend-container
     build: ./frontend
     ports:
-      - 3000:80
+      - 3000:3000
+    stdin_open: true
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+
