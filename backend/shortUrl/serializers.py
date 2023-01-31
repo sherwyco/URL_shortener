@@ -7,4 +7,5 @@ class ShortUrlSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ShortUrl
-        fields = ('id', 'original_url', 'short_code', 'created_at')
+        fields = '__all__'
+        read_only_fields = ('short_code', )

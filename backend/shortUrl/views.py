@@ -4,8 +4,7 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import ShortUrl
 from .serializers import ShortUrlSerializer
-from .code_generator import generate_code
-from django.shortcuts import redirect
+# from django.shortcuts import redirect
 
 
 class ShortUrlListApiView(APIView):
@@ -25,18 +24,8 @@ class ShortUrlListApiView(APIView):
         '''
         Shorten a url with a given link
         '''
-
-        # check if code already exists in db, if so keep generating a code
-        code_generated = ''
-        while True:
-            code_generated = generate_code()
-            short_code_exist = ShortUrl.objects.filter(
-                short_code=code_generated).exists()
-            if not short_code_exist:
-                break
         data = {
-            'original_url': request.data.get('original_url'),
-            'short_code': code_generated
+            'original_url': request.data.get('original_url')
         }
         serializer = ShortUrlSerializer(data=data)
         if serializer.is_valid():
@@ -112,10 +101,10 @@ class ShortUrlDetailApiView(APIView):
         )
 
 
-def short_url_redirect(request, code, *args, **kwargs):
-    short_url_instance = ShortUrl.objects.filter(short_code=code)
-    if short_url_instance.exists():
-        link = short_url_instance.get(short_code=code).original_url
-        return redirect(link)
-    else:
-        return redirect("/")
+# def short_url_redirect(request, code, *args, **kwargs):
+#     short_url_instance = ShortUrl.objects.filter(short_code=code)
+#     if short_url_instance.exists():
+#         link = short_url_instance.get(short_code=code).original_url
+#         return redirect(link)
+#     else:
+#         return redirect("/")
