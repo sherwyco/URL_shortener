@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-
+# rest naming scheme api/v1
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shortUrl.urls'))

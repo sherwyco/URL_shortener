@@ -4,6 +4,7 @@ from rest_framework import status
 from rest_framework import permissions
 from .models import ShortUrl
 from .serializers import ShortUrlSerializer
+from .pagination import CustomPagination
 
 
 class ShortUrlListApiView(APIView):
@@ -14,9 +15,14 @@ class ShortUrlListApiView(APIView):
         '''
         List all the shortened urls
         '''
-        short_url = ShortUrl.objects.all()
-        serializer = ShortUrlSerializer(short_url, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        short_urls = ShortUrl.objects.all()
+        paginator = CustomPagination()
+        paginator.page_query_param = 'page'
+        paginator.page_size_query_param = 'per_page'
+        paginator.max_page_size = 50
+        result_page = paginator.paginate_queryset(short_urls, request)
+        serializer = ShortUrlSerializer(result_page, many=True)
+        return paginator.get_paginated_response(serializer.data)
 
     # 2. Create
     def post(self, request, *args, **kwargs):
@@ -71,7 +77,7 @@ class ShortUrlDetailApiView(APIView):
         short_url_instance = self.get_object(id)
         if not short_url_instance:
             return Response(
-                {"res": "Object with short url id does not exists"},
+                {"res": "Object with id: %d does not exists" % id},
                 status=status.HTTP_400_BAD_REQUEST
             )
         short_url_instance.delete()
