@@ -7,6 +7,6 @@ URL Shortener written in TypeScript, React, Python, Django, REST, PostgreSQL
 - ```docker-compose up```
 - wait for docker to finish then head
 - front-end `localhost:3000`
-- back-end `localhost:5000/shortener/`
+- back-end `localhost:5000/shortener`
 ## Stopping the application
 - ```docker-compose down```

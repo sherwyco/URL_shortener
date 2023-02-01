@@ -85,3 +85,22 @@ class ShortUrlDetailApiView(APIView):
             {"res": "Object deleted!"},
             status=status.HTTP_200_OK
         )
+
+
+class ShortUrlCodeApiView(APIView):
+    # retrieve original url via short code
+    def get(self, request, code, *args, **kwargs):
+        '''
+        retrieve original url via short code
+        '''
+        short_url = ShortUrl.objects.filter(short_code=code)
+        if not short_url.exists():
+            return Response(
+                {"res": "Object with code: %s does not exists" % code},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        short_obj = short_url.first()
+        serializer = ShortUrlSerializer(short_obj)
+        response = Response(serializer.data, status=status.HTTP_200_OK)
+        response['Location'] = short_obj.original_url
+        return response
