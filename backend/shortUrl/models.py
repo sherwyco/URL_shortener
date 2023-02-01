@@ -1,9 +1,19 @@
 from django.db import models
-from .code_generator import generate_code
+from .utils import generate_code
+from django.core.validators import URLValidator
+from django.core.exceptions import ValidationError
+
+
+def validate_url(url):
+    validator = URLValidator()
+    try:
+        validator(url)
+    except ValidationError as exception:
+        raise exception
 
 
 class ShortUrl(models.Model):
-    original_url = models.TextField(null=False)
+    original_url = models.TextField(null=False, validators=[validate_url])
     short_code = models.CharField(max_length=10, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

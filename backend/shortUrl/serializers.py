@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import ShortUrl
 
 
-# create class to serializer model
 class ShortUrlSerializer(serializers.ModelSerializer):
 
     class Meta:
