@@ -29,5 +29,8 @@ class ShortUrl(models.Model):
         self.short_code = code_generated
         super(ShortUrl, self).save(*args, **kwargs)
 
+    class Meta:
+        ordering = ['-id']
+
     def __str__(self):
         return self.id
