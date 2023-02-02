@@ -1,5 +1,5 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { getData, deleteData } from '../Api/Client';
+import { getData, deleteData, postData } from '../Api/Client';
 import CustomTable from './CustomTable';
 
 interface ApiModelType {
@@ -45,6 +45,18 @@ export default function ShortUrl() {
         })
         return row;
     }
+
+    const handleAddSubmit = (url: string) => {
+        // eslint-disable-next-line
+        postData('/shortener/', {
+            original_url: url
+        }).then((response: any) => {
+            console.log(response.status)
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+
     const handleDeleteConfirm = (id: number) => {
         // eslint-disable-next-line
         deleteData(`/shortener/${id}`).then((response: any) => {
@@ -75,6 +87,7 @@ export default function ShortUrl() {
         <CustomTable
             data={data} totalCount={totalCount}
             page={page} rowsPerPage={rowsPerPage}
+            handleAddSubmit={handleAddSubmit}
             handleDeleteConfirm={handleDeleteConfirm}
             handleChangePage={handleChangePage}
             handleChangeRowsPerPage={handleChangeRowsPerPage} />
