@@ -9,7 +9,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import DeleteButton from './DeleteButton';
 import { getData } from '../Api/Client';
-import { maxWidth } from '@mui/system';
 
 interface Column {
     id: 'originalUrl' | 'shortCode' | 'createdAt' | 'objectId';
@@ -33,7 +32,7 @@ const columns: readonly Column[] = [
     },
 
 ];
-interface ApiType {
+interface ApiModelType {
     id: number;
     original_url: string;
     short_code: string;
@@ -47,30 +46,16 @@ interface Data {
     objectId: number;
 }
 
-function createData(
-    originalUrl: string,
-    shortCode: string,
-    createdAt: string,
-    objectId: number,
-): Data {
-    const formatCreatedDate = new Date(createdAt).toLocaleString()
-
-    return { originalUrl: originalUrl, shortCode: shortCode, createdAt: formatCreatedDate, objectId: objectId };
-}
-
-const rows = [
-    createData('https://drive.google.com/file/d/1RGD4flezyrCULKWl9gMp2v9U5_zs2w21/view', 'IEla5uL', "2023-02-02T00:34:07.906105Z", 1),
-
-];
-
 
 export default function ShortUrl() {
     const [page, setPage] = useState(1);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [totalCount, setTotalCount] = useState(100);
     const [data, setData] = useState<Data[]>([])
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
+
     };
 
     const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +69,7 @@ export default function ShortUrl() {
 
     const cleanData = (rawData: []) => {
         const row: Data[] = []
-        rawData?.forEach((elem: ApiType) => {
+        rawData?.forEach((elem: ApiModelType) => {
             row.push({
                 objectId: elem.id,
                 originalUrl: elem.original_url,
@@ -95,16 +80,21 @@ export default function ShortUrl() {
         return row;
     }
 
-
-    useEffect(() => {
+    const fetchData = () => {
+        // eslint-disable-next-line
         getData("/shortener/", `?per_page=${rowsPerPage}&page=${page}`, {}).then((response: any) => {
-            setPage(response.data.links.page)
-            setRowsPerPage(response.data.links.per_page)
+            console.log(response);
+            setPage(response.data.page);
+            setTotalCount(response.data.total);
+            setRowsPerPage(response.data.per_page);
             setData(cleanData(response.data.results));
         }).catch((error) => {
             console.log(error)
         })
-    }, [setData, setRowsPerPage, setPage])
+    }
+    useEffect(() => {
+        fetchData(); //initial
+    }, [setData, setRowsPerPage, setPage, setTotalCount])
 
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -148,9 +138,9 @@ export default function ShortUrl() {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 50]}
                 component="div"
-                count={rows.length}
+                count={totalCount}
                 rowsPerPage={rowsPerPage}
-                page={page}
+                page={page - 1}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
