@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getData } from './Api/Client';
+import { getData } from '../Api/Client';
+import { CircularProgress } from '@mui/material';
 
 function Redirect() {
     const { shortCode } = useParams();
@@ -15,7 +16,7 @@ function Redirect() {
             navigate("/")
         })
     })
-    return <h1> You will be automatically redirected if link exists...</h1>
+    return <><CircularProgress /></>
 }
 
-export default Redirect
+export default Redirect;

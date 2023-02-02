@@ -1,7 +1,7 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { getData, deleteData, postData } from '../Api/Client';
 import CustomTable from './CustomTable';
-
+import SuccessModal from './SuccessModal';
 interface ApiModelType {
     id: number;
     original_url: string;
@@ -22,6 +22,7 @@ export default function ShortUrl() {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [totalCount, setTotalCount] = useState(0);
     const [data, setData] = useState<Data[]>([])
+    const [shortenedUrl, setShortenedUrl] = useState("");
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage + 1);
@@ -47,11 +48,13 @@ export default function ShortUrl() {
     }
 
     const handleAddSubmit = (url: string) => {
+        setShortenedUrl("") //reset
         const params = { original_url: url }
         // eslint-disable-next-line
         postData('/shortener/', params).then((response: any) => {
+            const shortenedUrl = window.location.href + response.data.short_code;
+            setShortenedUrl(shortenedUrl);
             fetchAll();
-            console.log(response.status)
         }).catch((error) => {
             console.log(error)
         })
@@ -60,7 +63,6 @@ export default function ShortUrl() {
     const handleDeleteConfirm = (id: number) => {
         // eslint-disable-next-line
         deleteData(`/shortener/${id}`).then((response: any) => {
-            console.log(response.status);
             fetchAll();
         }).catch((error) => {
             console.log(error)
@@ -70,7 +72,6 @@ export default function ShortUrl() {
     const fetchAll = () => {
         // eslint-disable-next-line
         getData("/shortener/", `?per_page=${rowsPerPage}&page=${page}`, {}).then((response: any) => {
-            console.log(response);
             setTotalCount(response.data.total);
             setData(cleanData(response.data.results));
             setPage(response.data.page)
@@ -84,13 +85,16 @@ export default function ShortUrl() {
     }, [page, rowsPerPage])
 
     return (
-        <CustomTable
-            data={data} totalCount={totalCount}
-            page={page} rowsPerPage={rowsPerPage}
-            handleAddSubmit={handleAddSubmit}
-            handleDeleteConfirm={handleDeleteConfirm}
-            handleChangePage={handleChangePage}
-            handleChangeRowsPerPage={handleChangeRowsPerPage} />
-    );
+        <>
+            {shortenedUrl && <SuccessModal shortUrl={shortenedUrl} />}
+            <CustomTable
+                data={data} totalCount={totalCount}
+                page={page} rowsPerPage={rowsPerPage}
+                handleAddSubmit={handleAddSubmit}
+                handleDeleteConfirm={handleDeleteConfirm}
+                handleChangePage={handleChangePage}
+                handleChangeRowsPerPage={handleChangeRowsPerPage} />
+        </>
 
+    );
 }
