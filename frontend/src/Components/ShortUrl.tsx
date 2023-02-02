@@ -47,10 +47,9 @@ export default function ShortUrl() {
     }
 
     const handleAddSubmit = (url: string) => {
+        const params = { original_url: url }
         // eslint-disable-next-line
-        postData('/shortener/', {
-            original_url: url
-        }).then((response: any) => {
+        postData('/shortener/', params).then((response: any) => {
             fetchAll();
             console.log(response.status)
         }).catch((error) => {
