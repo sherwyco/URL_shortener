@@ -51,6 +51,7 @@ export default function ShortUrl() {
         postData('/shortener/', {
             original_url: url
         }).then((response: any) => {
+            fetchAll();
             console.log(response.status)
         }).catch((error) => {
             console.log(error)
