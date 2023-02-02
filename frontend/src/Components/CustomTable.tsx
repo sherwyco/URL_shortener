@@ -8,6 +8,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import DeleteButton from './DeleteButton';
 import { Typography } from '@mui/material';
+import Link from '@mui/material/Link';
+
 import { ChangeEvent } from "react"
 import AddRowDialog from './AddRowDialog';
 
@@ -87,8 +89,18 @@ function CustomTable(props: PropTypes) {
                                                 overflow: 'hidden',
                                                 textOverflow: 'ellipsis',
                                                 maxWidth: 40,
+                                                whiteSpace: 'nowrap'
                                             }}>
-                                                {column.id === 'objectId' ? <DeleteButton objectId={row.objectId} handleDeleteConfirm={handleDeleteConfirm} /> : value}
+                                                {(() => {
+                                                    if (column.id === 'objectId') {
+                                                        return <DeleteButton objectId={row.objectId} handleDeleteConfirm={handleDeleteConfirm} />
+                                                    } else if (column.id === 'originalUrl') {
+                                                        return <><Link rel="noopener noreferrer" target="_blank"
+                                                            href={row.originalUrl}>{value}</Link></>
+                                                    } else {
+                                                        return value;
+                                                    }
+                                                })()}
                                             </TableCell>
                                         );
                                     })}
