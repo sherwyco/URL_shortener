@@ -10,17 +10,24 @@ from .pagination import CustomPagination
 class ShortUrlListApiView(APIView):
     permission_classes = [permissions.AllowAny]
 
+    def filter_queryset(self, queryset):
+        for backend in list(self.filter_backends):
+            queryset = backend().filter_queryset(self.request, queryset, self)
+        return queryset
+
+    def get_queryset(self):
+        return ShortUrl.objects.all()
+
     # 1. List all
     def get(self, request, *args, **kwargs):
         '''
         List all the shortened urls
         '''
-        short_urls = ShortUrl.objects.all()
         paginator = CustomPagination()
         paginator.page_query_param = 'page'
         paginator.page_size_query_param = 'per_page'
         paginator.max_page_size = 50
-        result_page = paginator.paginate_queryset(short_urls, request)
+        result_page = paginator.paginate_queryset(self.get_queryset(), request)
         serializer = ShortUrlSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
 
