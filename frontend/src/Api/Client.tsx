@@ -33,3 +33,17 @@ export const postData = (endPoint: string, queryParams: string, inputParams: obj
             });
     });
 };
+
+export const deleteData = (endPoint: string) => {
+    return new Promise((resolve, reject) => {
+        axios
+            .delete(host + endPoint
+            )
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
+};

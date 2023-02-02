@@ -28,7 +28,7 @@ const columns: readonly Column[] = [
 
     },
     {
-        id: 'objectId', label: 'Delete', align: 'right'
+        id: 'objectId', label: 'Actions', align: 'right'
     },
 
 ];
@@ -45,6 +45,7 @@ interface PropTypes {
     totalCount: number;
     page: number,
     rowsPerPage: number;
+    handleDeleteConfirm: (id: number) => void;
     handleChangePage: (event: unknown, newPage: number) => void;
     handleChangeRowsPerPage: (event: ChangeEvent<HTMLInputElement>) => void;
 
@@ -52,7 +53,7 @@ interface PropTypes {
 
 function CustomTable(props: PropTypes) {
 
-    const { data, totalCount, page, rowsPerPage, handleChangePage, handleChangeRowsPerPage } = props;
+    const { data, totalCount, page, rowsPerPage, handleDeleteConfirm, handleChangePage, handleChangeRowsPerPage } = props;
 
     return (<Paper sx={{ width: '100%', overflow: 'hidden' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
@@ -82,7 +83,7 @@ function CustomTable(props: PropTypes) {
                                             textOverflow: 'ellipsis',
                                             maxWidth: 30,
                                         }}>
-                                            {column.id === 'objectId' ? <DeleteButton handleDelete={() => { console.log("DELETED!") }} /> : value}
+                                            {column.id === 'objectId' ? <DeleteButton objectId={row.objectId} handleDeleteConfirm={handleDeleteConfirm} /> : value}
                                         </TableCell>
                                     );
                                 })}

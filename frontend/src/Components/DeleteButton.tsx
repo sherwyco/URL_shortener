@@ -9,7 +9,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 
 interface DeleteTypes {
-    handleDelete: () => void;
+    handleDeleteConfirm: (id: number) => void;
+    objectId: number;
+
 }
 
 function DeleteButton(props: DeleteTypes) {
@@ -26,7 +28,7 @@ function DeleteButton(props: DeleteTypes) {
 
     const handleConfirm = () => {
         setOpen(false);
-        props.handleDelete();
+        props.handleDeleteConfirm(props.objectId);
     }
 
     return (
