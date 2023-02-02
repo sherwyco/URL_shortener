@@ -107,7 +107,6 @@ class ShortUrlCodeApiView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         short_obj = short_url.first()
-        serializer = ShortUrlSerializer(short_obj)
-        response = Response(serializer.data, status=status.HTTP_200_OK)
-        response['Location'] = short_obj.original_url
+        response = Response(headers={
+                            'Location': short_obj.original_url}, status=status.HTTP_301_MOVED_PERMANENTLY)
         return response

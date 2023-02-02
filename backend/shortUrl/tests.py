@@ -61,4 +61,5 @@ class ShortUrlApiTestCase(APITestCase):
     def test_code_url(self):
         short_code = ShortUrl.objects.first().short_code
         response = self.client.get('/' + short_code, format='json')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.status_code,
+                         status.HTTP_301_MOVED_PERMANENTLY)
