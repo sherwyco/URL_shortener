@@ -97,7 +97,6 @@ class ShortUrlDetailApiView(APIView):
 class ShortUrlCodeApiView(APIView):
     # retrieve original url via short code
     def get(self, request, code, *args, **kwargs):
-        print("request", request)
         '''
         retrieve original url via short code
         '''
