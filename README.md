@@ -1,5 +1,5 @@
 # URL_shortener
-URL Shortener built on TypeScript, React, Python, Django, REST, PostgreSQL, and Docker.
+URL Shortener built with TypeScript, React, Python, Django, REST, PostgreSQL, and Docker.
 
 # Requirements 
 - Docker
