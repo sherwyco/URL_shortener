@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches component snapshot 1`] = `
+<div
+  className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1fw5qro-MuiPaper-root"
+>
+  <div
+    style={
+      {
+        "margin": "10px 10px 10px 10px",
+        "textAlign": "right",
+      }
+    }
+  >
+    <div>
+      <button
+        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+        disabled={false}
+        onBlur={[Function]}
+        onClick={[Function]}
+        onContextMenu={[Function]}
+        onDragLeave={[Function]}
+        onFocus={[Function]}
+        onKeyDown={[Function]}
+        onKeyUp={[Function]}
+        onMouseDown={[Function]}
+        onMouseLeave={[Function]}
+        onMouseUp={[Function]}
+        onTouchEnd={[Function]}
+        onTouchMove={[Function]}
+        onTouchStart={[Function]}
+        tabIndex={0}
+        type="button"
+      >
+        Add Row
+      </button>
+    </div>
+  </div>
+  <div
+    className="MuiTableContainer-root css-ga3o5l-MuiTableContainer-root"
+  >
+    <table
+      aria-label="sticky table"
+      className="MuiTable-root MuiTable-stickyHeader css-xn82ks-MuiTable-root"
+      role={null}
+    >
+      <thead
+        className="MuiTableHead-root css-15wwp11-MuiTableHead-root"
+        role={null}
+      >
+        <tr
+          className="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
+          role={null}
+        >
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignLeft MuiTableCell-sizeMedium css-y8ay40-MuiTableCell-root"
+            scope="col"
+            style={
+              {
+                "minWidth": undefined,
+              }
+            }
+          >
+            <span
+              className="MuiTypography-root MuiTypography-button css-1f0on15-MuiTypography-root"
+            >
+              Url
+            </span>
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeMedium css-i02g0k-MuiTableCell-root"
+            scope="col"
+            style={
+              {
+                "minWidth": undefined,
+              }
+            }
+          >
+            <span
+              className="MuiTypography-root MuiTypography-button css-1f0on15-MuiTypography-root"
+            >
+              Code
+            </span>
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeMedium css-i02g0k-MuiTableCell-root"
+            scope="col"
+            style={
+              {
+                "minWidth": undefined,
+              }
+            }
+          >
+            <span
+              className="MuiTypography-root MuiTypography-button css-1f0on15-MuiTypography-root"
+            >
+              Created At
+            </span>
+          </th>
+          <th
+            aria-sort={null}
+            className="MuiTableCell-root MuiTableCell-head MuiTableCell-stickyHeader MuiTableCell-alignRight MuiTableCell-sizeMedium css-i02g0k-MuiTableCell-root"
+            scope="col"
+            style={
+              {
+                "minWidth": undefined,
+              }
+            }
+          >
+            <span
+              className="MuiTypography-root MuiTypography-button css-1f0on15-MuiTypography-root"
+            >
+              Actions
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody
+        className="MuiTableBody-root css-apqrd9-MuiTableBody-root"
+        role={null}
+      />
+    </table>
+  </div>
+  <div
+    className="MuiTablePagination-root css-jtlhu6-MuiTablePagination-root"
+  >
+    <div
+      className="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular MuiTablePagination-toolbar css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar"
+    >
+      <div
+        className="MuiTablePagination-spacer css-1psng7p-MuiTablePagination-spacer"
+      />
+      <p
+        className="MuiTablePagination-selectLabel css-pdct74-MuiTablePagination-selectLabel"
+        id=":r2:"
+      >
+        Rows per page:
+      </p>
+      <div
+        className="MuiInputBase-root MuiInputBase-colorPrimary css-16c50h-MuiInputBase-root-MuiTablePagination-select"
+        onClick={[Function]}
+      >
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-labelledby=":r2: :r1:"
+          className="MuiSelect-select MuiTablePagination-select MuiSelect-standard MuiInputBase-input css-194a1fa-MuiSelect-select-MuiInputBase-input"
+          id=":r1:"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          role="button"
+          tabIndex={0}
+        >
+          10
+        </div>
+        <input
+          aria-hidden={true}
+          className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+          onAnimationStart={[Function]}
+          onChange={[Function]}
+          tabIndex={-1}
+          value={10}
+        />
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiTablePagination-selectIcon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
+          data-testid="ArrowDropDownIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M7 10l5 5 5-5z"
+          />
+        </svg>
+      </div>
+      <p
+        className="MuiTablePagination-displayedRows css-levciy-MuiTablePagination-displayedRows"
+      >
+        0–0 of 0
+      </p>
+      <div
+        className="MuiTablePagination-actions"
+      >
+        <button
+          aria-label="Go to previous page"
+          className="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          title="Go to previous page"
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="KeyboardArrowLeftIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
+            />
+          </svg>
+        </button>
+        <button
+          aria-label="Go to next page"
+          className="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeMedium css-zylse7-MuiButtonBase-root-MuiIconButton-root"
+          disabled={true}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={-1}
+          title="Go to next page"
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="KeyboardArrowRightIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
