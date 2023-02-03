@@ -4,22 +4,18 @@ import './index.css'
 import App from './App'
 import Redirect from './Components/Redirect'
 import reportWebVitals from './reportWebVitals'
-import {
-    createBrowserRouter,
-    RouterProvider,
-} from "react-router-dom";
-
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <App />
+        path: '/',
+        element: <App />,
     },
     {
-        path: "/:shortCode",
-        element: <Redirect />
+        path: '/:shortCode',
+        element: <Redirect />,
     },
-]);
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(

@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import { TextField } from '@mui/material';
-import Modal from '@mui/material/Modal';
+import { useState } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import { TextField } from '@mui/material'
+import Modal from '@mui/material/Modal'
 
 const style = {
     position: 'absolute',
@@ -14,16 +14,16 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-};
+}
 
 interface ModalPropTypes {
-    shortUrl: string;
+    shortUrl: string
 }
 
 function SuccessModal(props: ModalPropTypes) {
-    const { shortUrl } = props;
-    const [open, setOpen] = useState(true);
-    const handleClose = () => setOpen(false);
+    const { shortUrl } = props
+    const [open, setOpen] = useState(true)
+    const handleClose = () => setOpen(false)
 
     return (
         <div>
@@ -35,21 +35,19 @@ function SuccessModal(props: ModalPropTypes) {
             >
                 <Box sx={style}>
                     <h3>Success!</h3>
-                    <Typography id="modal-modal-description" >
+                    <Typography id="modal-modal-description">
                         Your short url:
                     </Typography>
                     <TextField
-                        type='text'
+                        type="text"
                         defaultValue={shortUrl}
-                        variant='outlined'
-                        inputProps={
-                            { readOnly: true, }
-                        }
+                        variant="outlined"
+                        inputProps={{ readOnly: true }}
                         fullWidth
                     />
                 </Box>
             </Modal>
-        </div >
-    );
+        </div>
+    )
 }
-export default SuccessModal;
+export default SuccessModal

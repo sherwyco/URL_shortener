@@ -1,38 +1,36 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-import { getData, deleteData, postData } from '../Api/Client';
-import CustomTable from './CustomTable';
-import SuccessModal from './SuccessModal';
+import { ChangeEvent, useEffect, useState } from 'react'
+import { getData, deleteData, postData } from '../Api/Client'
+import CustomTable from './CustomTable'
+import SuccessModal from './SuccessModal'
 interface ApiModelType {
-    id: number;
-    original_url: string;
-    short_code: string;
+    id: number
+    original_url: string
+    short_code: string
     created_at: string
 }
 
 interface Data {
-    originalUrl: string;
-    shortCode: string;
-    createdAt: string;
-    objectId: number;
+    originalUrl: string
+    shortCode: string
+    createdAt: string
+    objectId: number
 }
 
-
 export default function ShortUrl() {
-    const [page, setPage] = useState(1);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [totalCount, setTotalCount] = useState(0);
+    const [page, setPage] = useState(1)
+    const [rowsPerPage, setRowsPerPage] = useState(10)
+    const [totalCount, setTotalCount] = useState(0)
     const [data, setData] = useState<Data[]>([])
-    const [shortenedUrl, setShortenedUrl] = useState("");
+    const [shortenedUrl, setShortenedUrl] = useState('')
 
     const handleChangePage = (event: unknown, newPage: number) => {
-        setPage(newPage + 1);
-    };
+        setPage(newPage + 1)
+    }
 
     const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(+event.target.value);
-        setPage(1);
-    };
-
+        setRowsPerPage(+event.target.value)
+        setPage(1)
+    }
 
     const cleanData = (rawData: []) => {
         const row: Data[] = []
@@ -41,45 +39,52 @@ export default function ShortUrl() {
                 objectId: elem.id,
                 originalUrl: elem.original_url,
                 shortCode: elem.short_code,
-                createdAt: new Date(elem.created_at).toLocaleString()
+                createdAt: new Date(elem.created_at).toLocaleString(),
             })
         })
-        return row;
+        return row
     }
 
     const handleAddSubmit = (url: string) => {
-        setShortenedUrl("") //reset
+        setShortenedUrl('') //reset
         const params = { original_url: url }
         // eslint-disable-next-line
-        postData('/shortener/', params).then((response: any) => {
-            const shortenedUrl = window.location.href + response.data.short_code;
-            setShortenedUrl(shortenedUrl);
-            fetchAll();
-        }).catch((error) => {
-            console.log(error)
-        })
+        postData('/shortener/', params)
+            .then((response: any) => {
+                const shortenedUrl =
+                    window.location.href + response.data.short_code
+                setShortenedUrl(shortenedUrl)
+                fetchAll()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     const handleDeleteConfirm = (id: number) => {
         // eslint-disable-next-line
-        deleteData(`/shortener/${id}`).then((response: any) => {
-            fetchAll();
-        }).catch((error) => {
-            console.log(error)
-        })
+        deleteData(`/shortener/${id}`)
+            .then((response: any) => {
+                fetchAll()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     const fetchAll = () => {
         // eslint-disable-next-line
-        getData("/shortener/", `?per_page=${rowsPerPage}&page=${page}`, {}).then((response: any) => {
-            console.log(response)
-            setTotalCount(response.data.total);
-            setData(cleanData(response.data.results));
-            setPage(response.data.page)
-            setRowsPerPage(response.data.per_page)
-        }).catch((error) => {
-            console.log(error)
-        })
+        getData('/shortener/', `?per_page=${rowsPerPage}&page=${page}`, {})
+            .then((response: any) => {
+                console.log(response)
+                setTotalCount(response.data.total)
+                setData(cleanData(response.data.results))
+                setPage(response.data.page)
+                setRowsPerPage(response.data.per_page)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     useEffect(() => {
         fetchAll()
@@ -89,13 +94,15 @@ export default function ShortUrl() {
         <>
             {shortenedUrl && <SuccessModal shortUrl={shortenedUrl} />}
             <CustomTable
-                data={data} totalCount={totalCount}
-                page={page} rowsPerPage={rowsPerPage}
+                data={data}
+                totalCount={totalCount}
+                page={page}
+                rowsPerPage={rowsPerPage}
                 handleAddSubmit={handleAddSubmit}
                 handleDeleteConfirm={handleDeleteConfirm}
                 handleChangePage={handleChangePage}
-                handleChangeRowsPerPage={handleChangeRowsPerPage} />
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
+            />
         </>
-
-    );
+    )
 }

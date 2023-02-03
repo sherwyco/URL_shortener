@@ -1,34 +1,32 @@
-import { useState } from "react"
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
+import { useState } from 'react'
+import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import Button from '@mui/material/Button'
 
 interface DeleteTypes {
-    handleDeleteConfirm: (id: number) => void;
-    objectId: number;
-
+    handleDeleteConfirm: (id: number) => void
+    objectId: number
 }
 
 function DeleteButton(props: DeleteTypes) {
-
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
 
     const handleClickOpen = () => {
-        setOpen(true);
-    };
+        setOpen(true)
+    }
 
     const handleClose = () => {
-        setOpen(false);
-    };
+        setOpen(false)
+    }
 
     const handleConfirm = () => {
-        setOpen(false);
-        props.handleDeleteConfirm(props.objectId);
+        setOpen(false)
+        props.handleDeleteConfirm(props.objectId)
     }
 
     return (
@@ -43,7 +41,7 @@ function DeleteButton(props: DeleteTypes) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    {"Confirm Delete"}
+                    {'Confirm Delete'}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
@@ -61,4 +59,4 @@ function DeleteButton(props: DeleteTypes) {
     )
 }
 
-export default DeleteButton;
+export default DeleteButton
