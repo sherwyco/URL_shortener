@@ -97,6 +97,7 @@ class ShortUrlDetailApiView(APIView):
 class ShortUrlCodeApiView(APIView):
     # retrieve original url via short code
     def get(self, request, code, *args, **kwargs):
+        print("request", request)
         '''
         retrieve original url via short code
         '''
@@ -107,6 +108,5 @@ class ShortUrlCodeApiView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         short_obj = short_url.first()
-        response = Response(headers={
-                            'Location': short_obj.original_url}, status=status.HTTP_301_MOVED_PERMANENTLY)
-        return response
+        return Response(headers={"Location": short_obj.original_url},
+                        status=status.HTTP_301_MOVED_PERMANENTLY)

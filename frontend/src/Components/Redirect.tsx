@@ -1,22 +1,22 @@
 import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getData } from '../Api/Client';
+import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-
 function Redirect() {
     const { shortCode } = useParams();
-    const navigate = useNavigate()
-
     useEffect(() => {
-        // eslint-disable-next-line
-        getData(`/${shortCode}`, "", {}).then((response: any) => {
-            window.location.replace(response.data.original_url)
-        }).catch((error) => {
-            console.log(error)
-            navigate("/")
-        })
+        window.location.replace(`http://localhost:5000/${shortCode}`)
     })
-    return <><CircularProgress /></>
+    return (
+        <div style={{ display: "block" }}>
+            <div style={{
+                position: "absolute",
+                left: "50%",
+                top: "50%",
+                WebkitTransform: "translate(-50%, -50%)",
+                transform: "translate(-50%, -50%)",
+            }}><CircularProgress />
+            </div>
+        </div>)
 }
 
 export default Redirect;

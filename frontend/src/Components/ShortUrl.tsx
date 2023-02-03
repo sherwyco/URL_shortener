@@ -72,6 +72,7 @@ export default function ShortUrl() {
     const fetchAll = () => {
         // eslint-disable-next-line
         getData("/shortener/", `?per_page=${rowsPerPage}&page=${page}`, {}).then((response: any) => {
+            console.log(response)
             setTotalCount(response.data.total);
             setData(cleanData(response.data.results));
             setPage(response.data.page)
