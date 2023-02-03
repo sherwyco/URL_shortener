@@ -48,8 +48,8 @@ export default function ShortUrl() {
     const handleAddSubmit = (url: string) => {
         setShortenedUrl('') //reset
         const params = { original_url: url }
-        // eslint-disable-next-line
         postData('/shortener/', params)
+            // eslint-disable-next-line
             .then((response: any) => {
                 const shortenedUrl =
                     window.location.href + response.data.short_code
@@ -62,9 +62,8 @@ export default function ShortUrl() {
     }
 
     const handleDeleteConfirm = (id: number) => {
-        // eslint-disable-next-line
         deleteData(`/shortener/${id}`)
-            .then((response: any) => {
+            .then(() => {
                 fetchAll()
             })
             .catch((error) => {
@@ -73,8 +72,8 @@ export default function ShortUrl() {
     }
 
     const fetchAll = () => {
-        // eslint-disable-next-line
         getData('/shortener/', `?per_page=${rowsPerPage}&page=${page}`, {})
+            // eslint-disable-next-line
             .then((response: any) => {
                 setTotalCount(response.data.total)
                 setData(cleanData(response.data.results))
